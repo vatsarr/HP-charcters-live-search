@@ -30,12 +30,11 @@ h1 {
     border-radius: 5px;
     padding: 25px 25px;
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 3fr auto;
     grid-template-areas:
         "name image"
         "house image";
     text-align: left;
-    justify-content: center;
 }
 
 .character > h2 {
