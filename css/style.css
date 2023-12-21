@@ -57,11 +57,11 @@ h1 {
 #searchBar {
     color: rgb(169, 169, 169);
     width: 50%;
-    height: 3rem;
-    border-radius: 3px;
-    border: 1px solid #eaeaea;
+    min-width: 320px;
+    height: 4rem;
+    border-radius: 5px;
     padding: 5px 10px;
-    font-size: 18px;
+    font-size: 21px;
 }
 
 .shadow {
@@ -70,7 +70,7 @@ h1 {
 
 .italics {
     font-style: italic;
-    font-weight: normal;
+    font-weight: lighter;
 }
 
 #searchBar::placeholder {
@@ -79,6 +79,7 @@ h1 {
 
 #searchWrapper {
     position: relative;
+    margin-bottom: 20px;
 }
 
 #searchWrapper::after {
