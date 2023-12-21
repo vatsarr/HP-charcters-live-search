@@ -13,6 +13,8 @@ const loadCharacters = async () => {
 };
 
 const displayCharacters = (characters) => {
+    const currentYear = new Date().getFullYear();
+    console.log(currentYear);
     const htmlString = characters
         .map((character) => {
             if (character.house === "" && character.image === "") {
@@ -35,10 +37,20 @@ const displayCharacters = (characters) => {
                 <img src="${character.image}"></img>
             </li>
         `;
-            } else {
+            } else if (!character.yearOfBirth || character.yearOfBirth === "") {
                 return `
             <li class="character shadow">
                 <h2>${character.name}</h2>
+                <p>House: ${character.house}</p>
+                <img src="${character.image}"></img>
+            </li>
+        `;
+            } else {
+                return `
+            <li class="character shadow">
+                <h2>${character.name} <span class="italics">(${
+                    currentYear - character.yearOfBirth
+                })</span></h2>
                 <p>House: ${character.house}</p>
                 <img src="${character.image}"></img>
             </li>
