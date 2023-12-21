@@ -52,7 +52,7 @@ const displayCharacters = (characters) => {
 loadCharacters();
 
 searchBar.addEventListener("keyup", (e) => {
-    const searchString = e.target.value;
+    const searchString = e.target.value.toLowerCase();
     const filteredCharacters = hpCharacters.filter((character) => {
         return (
             character.name.toLowerCase().includes(searchString) ||
