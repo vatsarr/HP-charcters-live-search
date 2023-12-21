@@ -1,0 +1,82 @@
+body {
+    font-family: sans-serif;
+    background-color: #24315c7f;
+}
+
+* {
+    box-sizing: border-box;
+}
+h1 {
+    color: #eee;
+    margin-bottom: 30px;
+}
+.container {
+    padding: 40px;
+    margin: 0 auto;
+    max-width: 1000px;
+    text-align: center;
+}
+
+#charactersList {
+    padding-inline-start: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-gap: 20px;
+}
+
+.character {
+    list-style-type: none;
+    background-color: #eaeaea;
+    border-radius: 5px;
+    padding: 25px 25px;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas:
+        "name image"
+        "house image";
+    text-align: left;
+    justify-content: center;
+}
+
+.character > h2 {
+    grid-area: name;
+    margin: 0;
+}
+
+.character > p {
+    grid-area: house;
+    margin: 0;
+}
+
+.character > img {
+    max-height: 100px;
+    grid-area: image;
+}
+
+#searchBar {
+    color: rgb(169, 169, 169);
+    width: 50%;
+    height: 3rem;
+    border-radius: 3px;
+    border: 1px solid #eaeaea;
+    padding: 5px 10px;
+    font-size: 18px;
+}
+
+.shadow {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+#searchBar::placeholder {
+    color: rgba(169, 169, 169, 0.5);
+}
+
+#searchWrapper {
+    position: relative;
+}
+
+#searchWrapper::after {
+    position: absolute;
+    top: 7px;
+    right: 15px;
+}
