@@ -2,7 +2,7 @@
 
 body {
     font-family: Roboto, system-ui, sans-serif;
-    background-color: #24315c7f;
+    background-color: #222831;
 }
 
 * {
@@ -23,14 +23,15 @@ h1 {
     padding-inline-start: 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    grid-gap: 20px;
+    grid-gap: 12px;
 }
 
 .character {
+    color: #222831;
     list-style-type: none;
-    background-color: #eaeaea;
-    border-radius: 5px;
-    padding: 25px 25px;
+    background-color: #EEEEEE;
+    border-radius: 20px;
+    padding: 12px 12px;
     display: grid;
     grid-template-columns: 3fr auto;
     grid-template-areas:
@@ -42,6 +43,7 @@ h1 {
 .character > h2 {
     grid-area: name;
     margin: 0;
+    padding-top: 4px;
 }
 
 .character > p {
@@ -52,20 +54,23 @@ h1 {
 .character > img {
     max-height: 100px;
     grid-area: image;
+    border-radius: 8px;
+
 }
 
 #searchBar {
-    color: rgb(169, 169, 169);
+    color: #222831;
     width: 50%;
     min-width: 320px;
     height: 4rem;
-    border-radius: 5px;
-    padding: 5px 10px;
+    border: none;
+    border-radius: 20px;
+    padding-left: 20px;
     font-size: 21px;
 }
 
 .shadow {
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    box-shadow: rgba(185, 185, 185, 0.16) 0px 3px 6px, rgba(185, 185, 185, 0.16) 0px 3px 6px;
 }
 
 .italics {
@@ -74,7 +79,7 @@ h1 {
 }
 
 #searchBar::placeholder {
-    color: rgba(169, 169, 169, 0.5);
+    color: rgba(169, 169, 169, 0.75);
 }
 
 #searchWrapper {
