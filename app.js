@@ -2,6 +2,7 @@ const searchBar = document.getElementById("searchBar");
 const charactersList = document.getElementById("charactersList");
 const resultsStatus = document.getElementById("resultsStatus");
 const themeToggle = document.getElementById("themeToggle");
+const filterChips = Array.from(document.querySelectorAll(".filter-chip"));
 const currentYear = new Date().getFullYear();
 const API_URL = "https://hp-api.onrender.com/api/characters";
 const DEBOUNCE_DELAY = 150;
@@ -9,6 +10,7 @@ const DEBOUNCE_DELAY = 150;
 let hpCharacters = [];
 let debounceTimer;
 let currentTheme = "light";
+let activeFilter = "";
 
 const escapeHtml = (value = "") =>
   String(value).replace(/[&<>"']/g, (char) => {
@@ -43,6 +45,14 @@ const updateThemeToggle = () => {
   );
   themeToggle.querySelector(".theme-toggle__emoji").textContent = isDark ? "☀️" : "🌙";
   themeToggle.querySelector(".theme-toggle__label").textContent = isDark ? "Light" : "Dark";
+};
+
+const updateFilterChips = () => {
+  filterChips.forEach((chip) => {
+    const isActive = chip.dataset.filter === activeFilter;
+    chip.classList.toggle("is-active", isActive);
+    chip.setAttribute("aria-pressed", String(isActive));
+  });
 };
 
 const applyTheme = (theme) => {
@@ -87,19 +97,16 @@ const displayCharacters = (characters) => {
   );
 };
 
-const filterCharacters = (query) => {
-  const normalizedQuery = query.trim().toLowerCase();
-
-  if (!normalizedQuery) {
-    displayCharacters(hpCharacters);
-    return;
-  }
+const applyFilters = () => {
+  const normalizedQuery = searchBar.value.trim().toLowerCase();
 
   const filteredCharacters = hpCharacters.filter((character) => {
     const name = (character.name || "").toLowerCase();
     const house = (character.house || "").toLowerCase();
+    const matchesSearch = !normalizedQuery || name.includes(normalizedQuery) || house.includes(normalizedQuery);
+    const matchesQuickFilter = !activeFilter || house === activeFilter;
 
-    return name.includes(normalizedQuery) || house.includes(normalizedQuery);
+    return matchesSearch && matchesQuickFilter;
   });
 
   displayCharacters(filteredCharacters);
@@ -116,7 +123,8 @@ const loadCharacters = async () => {
     }
 
     hpCharacters = await res.json();
-    displayCharacters(hpCharacters);
+    updateFilterChips();
+    applyFilters();
   } catch (err) {
     console.error(err);
     charactersList.innerHTML =
@@ -125,11 +133,19 @@ const loadCharacters = async () => {
   }
 };
 
-searchBar.addEventListener("input", (event) => {
+searchBar.addEventListener("input", () => {
   clearTimeout(debounceTimer);
   debounceTimer = setTimeout(() => {
-    filterCharacters(event.target.value);
+    applyFilters();
   }, DEBOUNCE_DELAY);
+});
+
+filterChips.forEach((chip) => {
+  chip.addEventListener("click", () => {
+    activeFilter = chip.dataset.filter;
+    updateFilterChips();
+    applyFilters();
+  });
 });
 
 themeToggle.addEventListener("click", () => {
@@ -137,4 +153,5 @@ themeToggle.addEventListener("click", () => {
 });
 
 applyTheme(window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+updateFilterChips();
 loadCharacters();
