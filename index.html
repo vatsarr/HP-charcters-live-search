@@ -15,12 +15,20 @@
     <div class="bg-orb bg-orb--blue" aria-hidden="true"></div>
     <main class="container">
       <section class="hero glass-panel">
-        <p class="eyebrow">Wizarding index</p>
+        <div class="hero__topbar">
+          <p class="eyebrow">Wizarding index</p>
+          <button
+            type="button"
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Switch to dark mode"
+            aria-pressed="false"
+          >
+            <span class="theme-toggle__emoji" aria-hidden="true">🌙</span>
+            <span class="theme-toggle__label">Dark</span>
+          </button>
+        </div>
         <h1>Harry Potter Characters</h1>
-        <p class="hero__text">
-          Search the wizarding world with a softer, layered interface inspired
-          by Apple’s new Liquid Glass direction.
-        </p>
       </section>
 
       <section class="controls glass-panel">

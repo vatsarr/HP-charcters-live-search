@@ -1,12 +1,14 @@
 const searchBar = document.getElementById("searchBar");
 const charactersList = document.getElementById("charactersList");
 const resultsStatus = document.getElementById("resultsStatus");
+const themeToggle = document.getElementById("themeToggle");
 const currentYear = new Date().getFullYear();
 const API_URL = "https://hp-api.onrender.com/api/characters";
 const DEBOUNCE_DELAY = 150;
 
 let hpCharacters = [];
 let debounceTimer;
+let currentTheme = "light";
 
 const escapeHtml = (value = "") =>
   String(value).replace(/[&<>"']/g, (char) => {
@@ -30,6 +32,23 @@ const getCharacterAge = (yearOfBirth) => {
 
 const renderStatus = (message) => {
   resultsStatus.textContent = message;
+};
+
+const updateThemeToggle = () => {
+  const isDark = currentTheme === "dark";
+  themeToggle.setAttribute("aria-pressed", String(isDark));
+  themeToggle.setAttribute(
+    "aria-label",
+    isDark ? "Switch to light mode" : "Switch to dark mode",
+  );
+  themeToggle.querySelector(".theme-toggle__emoji").textContent = isDark ? "☀️" : "🌙";
+  themeToggle.querySelector(".theme-toggle__label").textContent = isDark ? "Light" : "Dark";
+};
+
+const applyTheme = (theme) => {
+  currentTheme = theme;
+  document.body.classList.toggle("theme-dark", theme === "dark");
+  updateThemeToggle();
 };
 
 const createCharacterCard = (character) => {
@@ -113,4 +132,9 @@ searchBar.addEventListener("input", (event) => {
   }, DEBOUNCE_DELAY);
 });
 
+themeToggle.addEventListener("click", () => {
+  applyTheme(currentTheme === "dark" ? "light" : "dark");
+});
+
+applyTheme(window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
 loadCharacters();
