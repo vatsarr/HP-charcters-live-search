@@ -11,21 +11,34 @@
     <title>Harry Potter characters search</title>
   </head>
   <body>
+    <div class="bg-orb bg-orb--violet" aria-hidden="true"></div>
+    <div class="bg-orb bg-orb--blue" aria-hidden="true"></div>
     <main class="container">
-      <h1>🪄 Harry Potter Characters 🪄</h1>
-      <div id="searchWrapper">
-        <label class="sr-only" for="searchBar">Search characters</label>
-        <input
-          type="search"
-          name="searchBar"
-          id="searchBar"
-          placeholder="Search for a character or house"
-          class="shadow"
-          autocomplete="off"
-          aria-describedby="resultsStatus"
-        />
-      </div>
-      <p id="resultsStatus" class="status" aria-live="polite"></p>
+      <section class="hero glass-panel">
+        <p class="eyebrow">Wizarding index</p>
+        <h1>Harry Potter Characters</h1>
+        <p class="hero__text">
+          Search the wizarding world with a softer, layered interface inspired
+          by Apple’s new Liquid Glass direction.
+        </p>
+      </section>
+
+      <section class="controls glass-panel">
+        <div id="searchWrapper">
+          <label class="sr-only" for="searchBar">Search characters</label>
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input
+            type="search"
+            name="searchBar"
+            id="searchBar"
+            placeholder="Search for a character or house"
+            autocomplete="off"
+            aria-describedby="resultsStatus"
+          />
+        </div>
+        <p id="resultsStatus" class="status" aria-live="polite"></p>
+      </section>
+
       <ul id="charactersList" aria-label="Harry Potter characters"></ul>
     </main>
     <script src="app.js" defer></script>
