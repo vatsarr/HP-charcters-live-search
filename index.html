@@ -44,18 +44,51 @@
             aria-describedby="resultsStatus"
           />
         </div>
-        <div class="quick-filters" aria-label="Quick filters">
-          <button type="button" class="filter-chip" data-filter="">All</button>
-          <button type="button" class="filter-chip" data-filter="gryffindor">Gryffindor</button>
-          <button type="button" class="filter-chip" data-filter="slytherin">Slytherin</button>
-          <button type="button" class="filter-chip" data-filter="ravenclaw">Ravenclaw</button>
-          <button type="button" class="filter-chip" data-filter="hufflepuff">Hufflepuff</button>
+        <div class="controls__toolbar">
+          <div class="quick-filters" aria-label="Quick filters">
+            <button type="button" class="filter-chip" data-filter="">All</button>
+            <button type="button" class="filter-chip" data-filter="gryffindor">Gryffindor</button>
+            <button type="button" class="filter-chip" data-filter="slytherin">Slytherin</button>
+            <button type="button" class="filter-chip" data-filter="ravenclaw">Ravenclaw</button>
+            <button type="button" class="filter-chip" data-filter="hufflepuff">Hufflepuff</button>
+          </div>
+          <div class="sort-group">
+            <label class="sr-only" for="sortSelect">Sort characters</label>
+            <select id="sortSelect" class="sort-select" aria-label="Sort characters">
+              <option value="default">Sort: Default</option>
+              <option value="name-asc">Name: A to Z</option>
+              <option value="name-desc">Name: Z to A</option>
+              <option value="house-asc">House: A to Z</option>
+              <option value="house-desc">House: Z to A</option>
+            </select>
+          </div>
         </div>
         <p id="resultsStatus" class="status" aria-live="polite"></p>
       </section>
 
       <ul id="charactersList" aria-label="Harry Potter characters"></ul>
     </main>
+
+    <div class="character-modal" id="characterModal" hidden>
+      <div class="character-modal__backdrop" data-close-modal></div>
+      <div
+        class="character-modal__dialog glass-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitle"
+      >
+        <button
+          type="button"
+          class="character-modal__close"
+          id="closeModalButton"
+          aria-label="Close character details"
+        >
+          ×
+        </button>
+        <div class="character-modal__content" id="modalContent"></div>
+      </div>
+    </div>
+
     <script src="app.js" defer></script>
   </body>
 </html>
